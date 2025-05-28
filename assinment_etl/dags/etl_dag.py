@@ -2,7 +2,7 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
 import sys
-from pathlib import Path
+
 sys.path.append("/home/shraddha/airflow/etl_pipeline")
 
 # Import the etl_pipeline functions
@@ -14,6 +14,7 @@ def read_data(**kwargs):
     df.write.mode('overwrite').parquet('/tmp/read_data.parquet')
     # Return the file path instead of the DataFrame
     return '/tmp/read_data.parquet'
+
 
 def transform_data(**kwargs):
     # Retrieve the file path from XCom
